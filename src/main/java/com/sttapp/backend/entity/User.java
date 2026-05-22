@@ -1,16 +1,25 @@
 package com.sttapp.backend.entity;
 
+import org.jspecify.annotations.Nullable;
+
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String name;
 
     @Column(unique = true, nullable = false)
