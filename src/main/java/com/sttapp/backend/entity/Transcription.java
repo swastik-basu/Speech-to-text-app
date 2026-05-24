@@ -21,7 +21,7 @@ public class Transcription {
     private Long id;
 
     private String fileName;
-
+    @Column(columnDefinition= "LONGTEXT")
     private String transcript;
 
     private LocalDateTime createdAt;

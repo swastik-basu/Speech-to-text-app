@@ -1,5 +1,4 @@
 package com.sttapp.backend.service.impl;
-
 import com.sttapp.backend.dto.AuthResponse;
 import com.sttapp.backend.dto.LoginRequest;
 import com.sttapp.backend.dto.RegisterRequest;

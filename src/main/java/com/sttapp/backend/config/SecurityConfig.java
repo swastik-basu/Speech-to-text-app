@@ -25,6 +25,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/register").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/speech/upload").permitAll()
+                        .requestMatchers("/api/speech/transcribe").permitAll()
+                        .requestMatchers("/api/speech/history").permitAll()
+                        .requestMatchers("/api/speech/*").permitAll()
                         .anyRequest().authenticated()
                 )
 
