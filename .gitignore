@@ -1,2 +1,9 @@
 .env
-./uploads
+
+target/
+
+.settings/
+
+.project
+
+.classpath
