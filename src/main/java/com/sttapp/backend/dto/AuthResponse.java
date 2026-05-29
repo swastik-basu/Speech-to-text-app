@@ -1,12 +1,12 @@
 package com.sttapp.backend.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
+
 public class AuthResponse {
 
-    public String message;
-    public AuthResponse(String message){
-    	this.message= message;
-    }
+    private String token;
 }

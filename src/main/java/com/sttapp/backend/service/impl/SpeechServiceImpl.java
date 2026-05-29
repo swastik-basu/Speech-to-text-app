@@ -1,5 +1,10 @@
 package com.sttapp.backend.service.impl;
 
+import com.sttapp.backend.entity.User;
+import com.sttapp.backend.repository.UserRepository;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sttapp.backend.dto.TranscriptResponse;
@@ -29,6 +34,7 @@ import java.util.UUID;
 public class SpeechServiceImpl implements SpeechService {
 
 	public final TranscriptionRepository transcriptionRepository;
+	public final UserRepository userRepository;
 	public static final String UPLOAD_DIR = "uploads";
 
 	@Value("${deepgram.api.key}")
@@ -90,9 +96,15 @@ public class SpeechServiceImpl implements SpeechService {
 
 			String transcript = root.path("results").path("channels").get(0).path("alternatives").get(0)
 					.path("transcript").asText();
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+			String email = authentication.getName();
+
+			User currentUser = userRepository.findByEmail(email)
+					.orElseThrow(() -> new RuntimeException("User not found"));
 
 			Transcription transcriptionEntity = Transcription.builder().fileName(file.getOriginalFilename())
-					.transcript(transcript).createdAt(LocalDateTime.now()).build();
+					.transcript(transcript).createdAt(LocalDateTime.now()).user(currentUser).build();
 
 			transcriptionRepository.save(transcriptionEntity);
 
@@ -109,7 +121,13 @@ public class SpeechServiceImpl implements SpeechService {
 	@Override
 	public List<Transcription> getHistory() {
 
-		return transcriptionRepository.findAllByOrderByCreatedAtDesc();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		String email = authentication.getName();
+
+		User currentUser = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+
+		return transcriptionRepository.findByUserOrderByCreatedAtDesc(currentUser);
 	}
 
 	@Override

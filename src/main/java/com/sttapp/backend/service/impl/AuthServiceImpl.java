@@ -10,11 +10,12 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import com.sttapp.backend.security.JWTService;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-
+	
+	private final JWTService jwtService;
     public final UserRepository userRepository;
     public final BCryptPasswordEncoder passwordEncoder;
 
@@ -57,6 +58,11 @@ public class AuthServiceImpl implements AuthService {
             return new AuthResponse("Invalid password");
         }
 
-        return new AuthResponse("Login successful");
+        String token =
+                jwtService.generateToken(
+                        user.getEmail()
+                );
+
+        return new AuthResponse(token);
     }
 }
