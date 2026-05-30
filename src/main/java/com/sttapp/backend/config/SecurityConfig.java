@@ -16,46 +16,34 @@ import com.sttapp.backend.security.JWTAuthenticationFilter;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
-	
+
 	private final JWTAuthenticationFilter jwtAuthenticationFilter;
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    @Bean
-    public SecurityFilterChain securityFilterChain(
-            HttpSecurity http
-    ) throws Exception {
 
-        http
-                .csrf(csrf -> csrf.disable())
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(
-                                SessionCreationPolicy.STATELESS
-                        )
-                )
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-                .authorizeHttpRequests(auth -> auth
+		http.cors(cors -> {
+		}).csrf(csrf -> csrf.disable())
 
-                        .requestMatchers(
-                                "/api/auth/register",
-                                "/api/auth/login"
-                        ).permitAll()
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                        .anyRequest()
-                        .authenticated()
-                )
+				.authorizeHttpRequests(auth -> auth
 
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                )
+						.requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
 
-                .formLogin(form -> form.disable())
+						.anyRequest().authenticated())
 
-                .httpBasic(httpBasic -> httpBasic.disable());
+				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 
-        return http.build();
-    }
+				.formLogin(form -> form.disable())
+
+				.httpBasic(httpBasic -> httpBasic.disable());
+
+		return http.build();
+	}
 }

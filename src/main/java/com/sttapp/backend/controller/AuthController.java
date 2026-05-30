@@ -3,6 +3,7 @@ package com.sttapp.backend.controller;
 import com.sttapp.backend.dto.AuthResponse;
 import com.sttapp.backend.dto.LoginRequest;
 import com.sttapp.backend.dto.RegisterRequest;
+import com.sttapp.backend.dto.RegisterResponse;
 import com.sttapp.backend.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class AuthController {
     public final AuthService authService;
 
     @PostMapping("/register")
-    public AuthResponse register(
+    public RegisterResponse register(
             @RequestBody RegisterRequest request
     ) {
         return authService.register(request);

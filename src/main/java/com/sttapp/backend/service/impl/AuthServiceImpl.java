@@ -2,6 +2,7 @@ package com.sttapp.backend.service.impl;
 import com.sttapp.backend.dto.AuthResponse;
 import com.sttapp.backend.dto.LoginRequest;
 import com.sttapp.backend.dto.RegisterRequest;
+import com.sttapp.backend.dto.RegisterResponse;
 import com.sttapp.backend.entity.User;
 import com.sttapp.backend.repository.UserRepository;
 import com.sttapp.backend.service.AuthService;
@@ -20,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
     public final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public AuthResponse register(RegisterRequest request) {
+    public RegisterResponse register(RegisterRequest request) {
 
         if(userRepository.findByEmail(request.getEmail()).isPresent()== false) {
         	User user = User.builder()
@@ -31,10 +32,10 @@ public class AuthServiceImpl implements AuthService {
 
             userRepository.save(user);
 
-            return new AuthResponse("User registered successfully");
+            return new RegisterResponse("User registered successfully");
         }
         
-        return new AuthResponse("Email is already present !!");
+        return new RegisterResponse("Email is already present !!");
 
         
     }

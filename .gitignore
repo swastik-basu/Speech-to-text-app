@@ -1,9 +1,14 @@
-.env
-
 target/
+uploads/
 
-.settings/
-
-.project
+.env
+application.properties
 
 .classpath
+.project
+.settings/
+
+.idea/
+.vscode/
+
+*.log
