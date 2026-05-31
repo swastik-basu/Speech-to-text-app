@@ -2,7 +2,6 @@ target/
 uploads/
 
 .env
-application.properties
 
 .classpath
 .project
