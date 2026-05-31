@@ -83,11 +83,17 @@ public class SpeechServiceImpl implements SpeechService {
 		try {
 
 			byte[] audioBytes = file.getBytes();
+			String contentType = file.getContentType();
+			
+			if(contentType == null) {
+			    contentType = "audio/mp3";
+			}
 
 			WebClient webClient = WebClient.builder().baseUrl("https://api.deepgram.com")
 					.defaultHeader(HttpHeaders.AUTHORIZATION, "Token " + deepgramApiKey).build();
-
-			String response = webClient.post().uri("/v1/listen").contentType(MediaType.valueOf("audio/wav"))
+			
+			
+			String response = webClient.post().uri("/v1/listen").contentType(MediaType.valueOf(contentType))
 					.bodyValue(audioBytes).retrieve().bodyToMono(String.class).block();
 
 			ObjectMapper objectMapper = new ObjectMapper();
