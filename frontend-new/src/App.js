@@ -6,19 +6,14 @@ import Dashboard from "./pages/Dashboard";
 import HistoryPage from "./pages/HistoryPage";
 import "./App.css";
 
-const Protected = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/" replace />;
-};
 
 function AppRoutes() {
   const { isAuthenticated } = useAuth();
   return (
     <Routes>
       <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage />} />
-      <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
-      <Route path="/history" element={<Protected><HistoryPage /></Protected>} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/history" element={<HistoryPage />} />
     </Routes>
   );
 }
