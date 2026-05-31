@@ -62,7 +62,7 @@ audio { width: 100%; }
 .auth-brand {
   display: flex; align-items: center; gap: 10px;
   font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem;
-  color: var(--text); margin-bottom: 60px; position: relative; z-index: 1;
+  color: var(--text); padding: 0 8px; margin-bottom: 60px; position: relative; z-index: 1;
 }
 .brand-icon { font-size: 1.4rem; color: var(--accent); }
 
@@ -414,3 +414,62 @@ audio { width: 100%; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+
+/* Tablet: 600px–1024px */
+@media (max-width: 1024px) {
+  .auth-left { padding: 40px; }
+  .auth-headline h1 { font-size: 2.4rem; }
+  .auth-right { width: 400px; padding: 32px; }
+
+  .sidebar { width: 200px; }
+
+  .dash-header { padding: 20px 20px 0; }
+  .dash-content { padding: 16px 20px 24px; }
+}
+
+/* Mobile: ≤ 600px */
+@media (max-width: 600px) {
+
+  /* ── Auth ── */
+  .auth-root { flex-direction: column; }
+  .auth-left { display: none; }
+  .auth-right { width: 100%; min-height: 100vh; padding: 32px 20px; align-items: flex-start; }
+  .auth-card { max-width: 100%; }
+
+  /* ── Dashboard shell ── */
+  .dash-root { flex-direction: column; height: auto; min-height: 100vh; overflow: auto; }
+
+  /* ── Sidebar → bottom nav bar ── */
+  .sidebar {
+    width: 100%; height: auto; flex-direction: row; align-items: center;
+    padding: 0 12px; border-right: none; border-top: 1px solid var(--border);
+    order: 2; flex-shrink: 0; overflow-x: auto;
+  }
+  .sidebar-brand { display: none; }
+  .sidebar-nav { flex-direction: row; gap: 0; flex: 1; overflow-x: auto; }
+  .nav-item { flex-direction: column; gap: 4px; padding: 10px 12px; font-size: 0.7rem; white-space: nowrap; }
+  .nav-icon { font-size: 1.2rem; }
+  .sidebar-footer { display: none; }
+
+  /* ── Main ── */
+  .dash-main { order: 1; overflow: visible; }
+  .dash-header { padding: 16px 16px 0; }
+  .dash-header h2 { font-size: 1.2rem; }
+  .dash-content { padding: 14px 16px 20px; overflow: visible; }
+
+  /* ── Tab switcher ── */
+  .tab-switcher { width: 100%; }
+  .mode-tab { flex: 1; justify-content: center; padding: 9px 10px; font-size: 0.8rem; }
+
+  /* ── Panels ── */
+  .input-panel, .transcript-panel { padding: 16px; }
+
+  /* ── Buttons ── */
+  .btn-row { flex-wrap: wrap; }
+  .btn-primary, .btn-secondary { flex: 1; justify-content: center; }
+
+  /* ── History ── */
+  .history-detail { position: static; }
+}
