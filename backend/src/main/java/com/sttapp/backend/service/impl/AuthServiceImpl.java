@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
         );
 
         if(!matches) {
-            return new AuthResponse("Invalid password");
+            return new AuthResponse("Invalid email or password");
         }
 
         String token =
