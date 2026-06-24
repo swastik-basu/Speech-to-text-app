@@ -12,6 +12,5 @@ public interface TranscriptionRepository
 
     List<Transcription> findAllByOrderByCreatedAtDesc();
 
-    List<Transcription>
-    findByUserOrderByCreatedAtDesc(User user);
+    List<Transcription> findByUserOrderByCreatedAtDesc(User user);
 }

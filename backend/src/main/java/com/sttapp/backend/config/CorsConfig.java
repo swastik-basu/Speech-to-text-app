@@ -17,7 +17,7 @@ public class CorsConfig {
 		CorsConfiguration configuration = new CorsConfiguration();
 
 		configuration.setAllowedOrigins(
-				List.of("http://localhost:3000", "https://voicescribe-c3izhkp9v-swastik-basu-s-projects.vercel.app/", "https://voicescribe-delta.vercel.app/"));
+				List.of("http://localhost:3000"));
 
 		configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 

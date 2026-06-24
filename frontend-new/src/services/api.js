@@ -1,4 +1,4 @@
-const BASE_URL = "https://speech-to-text-app-production-9797.up.railway.app";
+const BASE_URL = "http://localhost:8080"; // Replace with your backend URL
 
 const getHeaders = (isFormData = false) => {
   const token = localStorage.getItem("token");
