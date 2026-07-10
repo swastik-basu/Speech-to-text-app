@@ -1,55 +1,52 @@
-# 🎙️ VoiceScribe - Speech to Text Application
+# 🎙️ VoiceScribe – AI-Powered Speech-to-Text Web Application
 
-VoiceScribe is a full-stack Speech-to-Text web application that allows users to upload audio files or record audio directly from their browser and convert speech into text using AI-powered transcription services.
+VoiceScribe is a full-stack Speech-to-Text web application that allows users to securely upload audio files or record their voice directly from the browser and convert speech into text using AI-powered transcription.
 
-The application features secure JWT-based authentication, transcription history management, and a modern responsive user interface.
-
----
-
-## ✨ Features
-
-### 🔐 Authentication & Security
-
-* User Registration
-* User Login
-* JWT-Based Authentication
-* Password Encryption using BCrypt
-* Protected Routes
-
-### 🎙️ Audio Transcription
-
-* Upload Audio Files
-* Record Audio Directly from Browser
-* Speech-to-Text Conversion
-* Support for Multiple Audio Formats
-* Real-Time Recording Interface
-
-### 📜 History Management
-
-* Store Previous Transcriptions
-* View Transcription History
-* User-Specific Records
-* Persistent Database Storage
-
-### 🎨 Modern UI
-
-* Responsive Design
-* Clean Dashboard Interface
-* Drag-and-Drop File Upload
-* Audio Preview Support
-* Download Transcripts
-* Copy Transcript to Clipboard
+Built as part of my **Java Development Internship at Labmentix**, this project demonstrates the complete lifecycle of a modern full-stack application—from authentication and backend development to cloud deployment and containerization.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Features
+
+### 🔐 Secure Authentication
+
+* User Registration & Login
+* JWT-based Authentication
+* BCrypt Password Encryption
+* Protected API Endpoints
+
+### 🎙️ Speech-to-Text
+
+* Upload audio files
+* Record voice directly from the browser
+* AI-powered transcription using Deepgram API
+* Supports multiple audio formats (MP3, WAV, M4A, WEBM, OGG)
+
+### 📜 Transcription History
+
+* Store all previous transcriptions
+* User-specific history
+* Download transcripts as `.txt`
+* Copy transcripts with one click
+
+### 🎨 Modern User Interface
+
+* Responsive React UI
+* Drag & Drop File Upload
+* Audio Preview
+* Clean Dashboard
+* Easy Navigation
+
+---
+
+# 🛠️ Tech Stack
 
 ### Frontend
 
 * React.js
 * React Router DOM
 * Context API
-* HTML5 Audio APIs
+* HTML5 MediaRecorder API
 * CSS3
 
 ### Backend
@@ -61,214 +58,208 @@ The application features secure JWT-based authentication, transcription history 
 * JWT Authentication
 * Maven
 
+### Database
 
-### External Services
+* MySQL
+
+### AI Integration
 
 * Deepgram Speech-to-Text API
 
+### Deployment
+
+* Docker & Docker Compose *(Current Distribution Method)*
+
+
 ---
 
-## 📂 Project Structure
+# 📸 Application Preview
+
+> Add screenshots here
+
+* Login Page
+* Dashboard
+* Voice Recording
+* Audio Upload
+* Generated Transcript
+* History Page
+
+---
+
+# 📂 Project Structure
 
 ```text
-speech-to-text-app/
+VoiceScribe/
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── context/
-│   │   ├── hooks/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── App.js
-│   │
-│   └── public/
+│   ├── public/
+│   ├── Dockerfile
+│   └── package.json
 │
-└── backend/
-    ├── controller/
-    ├── service/
-    ├── repository/
-    ├── entity/
-    ├── security/
-    ├── config/
-    └── dto/
+├── backend/
+│   ├── src/
+│   ├── Dockerfile
+│   ├── pom.xml
+│   └── application.properties
+│
+├── docker-compose.yml
+├── .env.example
+└── README.md
 ```
 
 ---
 
-## 🔧 Installation
+# 🚀 Running the Project with Docker
 
-### Clone Repository
+## Prerequisites
 
-```bash
-git clone https://github.com/your-username/speech-to-text-app.git
-```
+* Docker Desktop
+* Deepgram API Key
 
-### Backend Setup
+---
 
-```bash
-cd backend
-```
-
-Configure application.properties:
-
-```properties
-spring.datasource.url=YOUR_DATABASE_URL
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
-
-jwt.secret=YOUR_SECRET
-deepgram.api.key=YOUR_API_KEY
-```
-
-Run the application:
+## Clone the Repository
 
 ```bash
-mvn spring-boot:run
+git clone https://github.com/YOUR_USERNAME/VoiceScribe.git
+
+cd VoiceScribe
 ```
 
 ---
 
-### Frontend Setup
+## Configure Environment Variables
 
-```bash
-cd frontend
-npm install
-```
-
-Create .env:
+Create a `.env` file in the project root:
 
 ```env
+DEEPGRAM_API_KEY=YOUR_DEEPGRAM_API_KEY
+
+JWT_SECRET=YOUR_SECRET_KEY
+
+SPRING_DATASOURCE_USERNAME=root
+SPRING_DATASOURCE_PASSWORD=root
+SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/voicescribe
+
 REACT_APP_API_URL=http://localhost:8080
 ```
 
-Start frontend:
+---
+
+## Start the Application
 
 ```bash
-npm start
+docker compose up --build
+```
+
+Docker will automatically:
+
+✅ Start MySQL
+
+✅ Build the Spring Boot Backend
+
+✅ Build the React Frontend
+
+✅ Connect all services together
+
+---
+
+## Access the Application
+
+Frontend
+
+```text
+http://localhost:3000
+```
+
+Backend API
+
+```text
+http://localhost:8080
 ```
 
 ---
 
-## 🔑 Environment Variables
+# 📖 How to Use
 
-### Backend
+### 1️⃣ Create an Account
 
-```env
-DB_URL=
-DB_USERNAME=
-DB_PASSWORD=
-JWT_SECRET=
-DEEPGRAM_API_KEY=
-```
-
-### Frontend
-
-```env
-REACT_APP_API_URL=
-```
+Register using your name, email, and password.
 
 ---
 
-## 📈 Future Enhancements
+### 2️⃣ Login
 
-* Multi-language Transcription
-* Export to PDF
-* Export to DOCX
-* Speaker Identification
-* Real-Time Streaming Transcription
-* Audio Editing Tools
-* Admin Dashboard
-* Cloud Storage Integration
+Authenticate securely using JWT.
 
 ---
 
-# 🎙️ How to Use VoiceScribe
+### 3️⃣ Upload or Record
 
-Getting started with VoiceScribe is simple and takes less than a minute!
+Choose one of the two available options:
 
-## Step 1: Create an Account
-
-* Open the application.
-* Click **Create Account**.
-* Enter your name, email, and password.
-* Register and log in securely.
-
-If you already have an account, simply sign in using your credentials.
+* Upload an audio file
+* Record audio directly from your microphone
 
 ---
 
-## Step 2: Choose How You Want to Transcribe
+### 4️⃣ Generate Transcript
 
-VoiceScribe offers two ways to convert speech into text:
-
-### 📁 Option 1: Upload an Audio File
-
-1. Navigate to the **Upload File** tab.
-2. Drag and drop your audio file or click to browse.
-3. Supported formats include:
-
-   * MP3
-   * WAV
-   * M4A
-   * WEBM
-   * OGG
-4. Click **Transcribe**.
-
-Within seconds, your transcript will appear on the screen.
+Click **Transcribe** and let Deepgram process your audio.
 
 ---
 
-### 🎙️ Option 2: Record Your Voice
+### 5️⃣ View History
 
-1. Switch to the **Record Voice** tab.
-2. Click the record button and start speaking.
-3. When finished, stop the recording.
-4. Click **Transcribe**.
-
-VoiceScribe will process your recording and generate the transcript automatically.
+All previous transcriptions are stored and can be viewed from the History page.
 
 ---
 
-## Step 3: View Your Transcript
+# 💡 Challenges Faced
 
-Once transcription is complete, you can:
+This project involved much more than writing code.
 
-* Read the generated text instantly.
-* Copy the transcript to your clipboard.
-* Download the transcript as a text file.
-* Save it for future reference.
+Some of the real-world engineering challenges included:
 
----
+* Designing secure JWT authentication
+* Building REST APIs with Spring Boot
+* Integrating AI-powered speech recognition
+* Handling multiple audio formats
+* Managing user-specific transcription history
+* Deploying frontend and backend independently
+* Configuring cloud-hosted MySQL databases
+* Resolving CORS issues between frontend and backend
+* Debugging React production build failures
+* Managing environment variables across different deployment environments
+* Containerizing the complete application using Docker
 
-## Step 4: Access Your History
-
-Every transcription is stored securely in your account.
-
-Visit the **History** page to:
-
-* View previous transcriptions.
-* Track your past uploads and recordings.
-* Revisit important notes whenever needed.
-
----
-
-## Why Use VoiceScribe?
-
-Whether you're a student, content creator, researcher, professional, or someone who simply prefers speaking over typing, VoiceScribe helps transform audio into readable text quickly and efficiently.
-
-No complicated setup. No technical knowledge required.
-
-Just upload, transcribe, and use your text.
-
-
-## 👨‍💻 Author
-
-Swastik Basu
-
-Computer Science Student | Java Developer | Full-Stack Developer
+Each challenge helped strengthen my understanding of full-stack software engineering and real-world application deployment.
 
 ---
 
-## 📄 License
+# 🎯 Future Improvements
 
-This project is open-source and available under the MIT License.
+* Multi-language transcription
+* PDF & DOCX export
+* Speaker diarization
+* Real-time live transcription
+* Admin dashboard
+* Docker health checks
+* Offline speech recognition support
+
+---
+
+# 👨‍💻 Author
+
+**Swastik Basu**
+
+Computer Science Undergraduate | Java & Full-Stack Developer
+
+If you found this project interesting, feel free to ⭐ the repository and connect with me on LinkedIn!
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
