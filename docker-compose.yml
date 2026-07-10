@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+
+  mysql:
+
+    image: mysql:8
+
+    container_name: voicescribe-mysql
+
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: {DB_Password}
+      MYSQL_DATABASE: speech_to_text
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+
+    build: ./backend
+
+    container_name: voicescribe-backend
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - mysql
+
+    environment:
+      SPRING_DATASOURCE_URL: {DB_URL}
+      SPRING_DATASOURCE_USERNAME: {DB_Username}
+      SPRING_DATASOURCE_PASSWORD: {DB_Password}
+
+      JWT_SECRET: {JWT_SECRET}
+
+      DEEPGRAM_API_KEY: {DEEPGRAM_API_KEY}
+
+  frontend:
+
+    build: ./frontend
+
+    container_name: voicescribe-frontend
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - backend
+
+volumes:
+
+  mysql-data:

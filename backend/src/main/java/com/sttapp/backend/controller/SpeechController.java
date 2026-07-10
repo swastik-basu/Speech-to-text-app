@@ -4,7 +4,6 @@ import com.sttapp.backend.dto.TranscriptResponse;
 import com.sttapp.backend.dto.UploadResponse;
 import com.sttapp.backend.entity.Transcription;
 import com.sttapp.backend.service.SpeechService;
-import com.sttapp.backend.service.impl.SpeechServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

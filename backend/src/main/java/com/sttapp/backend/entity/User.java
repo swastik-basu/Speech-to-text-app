@@ -1,7 +1,5 @@
 package com.sttapp.backend.entity;
 
-import org.jspecify.annotations.Nullable;
-
 import jakarta.persistence.*;
 import lombok.*;
 
