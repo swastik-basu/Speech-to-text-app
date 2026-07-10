@@ -11,7 +11,7 @@ services:
     restart: always
 
     environment:
-      MYSQL_ROOT_PASSWORD: {DB_Password}
+      MYSQL_ROOT_PASSWORD: ${DB_Password}
       MYSQL_DATABASE: speech_to_text
 
     ports:
@@ -33,13 +33,13 @@ services:
       - mysql
 
     environment:
-      SPRING_DATASOURCE_URL: {DB_URL}
-      SPRING_DATASOURCE_USERNAME: {DB_Username}
-      SPRING_DATASOURCE_PASSWORD: {DB_Password}
+      SPRING_DATASOURCE_URL: ${DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_Username}
+      SPRING_DATASOURCE_PASSWORD: ${DB_Password}
 
-      JWT_SECRET: {JWT_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
 
-      DEEPGRAM_API_KEY: {DEEPGRAM_API_KEY}
+      DEEPGRAM_API_KEY: ${DEEPGRAM_API_KEY}
 
   frontend:
 
